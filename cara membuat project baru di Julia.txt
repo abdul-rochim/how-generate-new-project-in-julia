@@ -1,0 +1,163 @@
+https://towardsdatascience.com/how-to-setup-project-environments-in-julia-ec8ae73afe9c
+
+https://www.matecdev.com/posts/julia-create-project.html
+
+https://pkgdocs.julialang.org/v1/environments/
+
+https://stackoverflow.com/questions/56643810/how-to-create-project-in-julia-and-juno
+
+https://github.com/ChrisRackauckas/MonteCarloIntegration.jl/blob/master/test/runtests.jl
+
+https://discourse.julialang.org/t/error-using-package-in-local-environment/91777
+
+
+cara membuat project baru di Julia:
+1. arahkan window ke tempat folder yang akan dituju untuk menyimpan file project
+
+2. buka terminal windows atau bash
+
+3. buka program julia dengan ketik command => 
+   $ julia  <pada windows>
+
+4. tekan tombol "]"
+   julia > ]
+   (@versi julia) pkg>
+
+5. berikan perintah =>
+   (@versi julia) pkg > generate <nama project>
+
+6. kemudian perintah untuk mengaktifkan environment project => 
+   (@versi julia) pkg > activate <nama project>
+
+   (nama project/environment) pkg > instantiate
+
+7. kemudian cek status project => 
+   (nama project) pkg > status
+   
+   maka akan muncul
+   Project <nama project > versi...
+   Status '...../Project.toml' (empty project)
+
+8. untuk menambah packages pada environment project
+   (dimana hanya project ini yg akan dapat mengakses packages tsb), maka perintahnya:
+   (nama project) pkg> add <nama package>
+
+   akan muncul install package...
+
+9. untuk cek status maka:
+   (nama project) pkg > status
+   atau
+   (nama project) pkg > st
+
+10.untuk update package maka:
+   (nama project) pkg > update
+
+11. keluar dari julia dengan tekan tombol "backspace" dan ketik exit()
+
+12. untuk masuk ke julia dengan environment project maka ada beberapa cara:
+    cara 1:
+    jika berada diluar project(satu langkah) maka perintah
+    $ julia <enter>
+
+    kemudian akan muncul program julia dan ketik "]"
+    julia > ]
+    (@versi julia) pkg > activate <nama project>
+    
+    kemudian akan menjadi,
+    (nama project) pkg >
+    
+    atau bisa langsung masuk ke folder <nama project> melalui perintah "cd <nama project>"
+    kemudian command
+    $ julia <enter>
+
+    kemudian akan muncul program julia dan ketik "]"
+    julia > ]
+    (@versi julia) pkg> activate .
+
+    kemudian akan menjadi
+    (nama project) pkg >
+
+    cara 2:
+    masuk ke folder <nama project> melalui perintah "cd <nama project>"
+    kemudian ketik perintah
+    $ julia --project=.
+
+    maka akan tampil program julia dengan base <nama project>
+    (nama project) pkg >
+
+    cara 3: (menggunakan Jupyter Notebook)
+    masuk ke folder <nama project> melalui perintah "cd <nama project>"
+    kemudian ketik perintah
+    julia --project=. -e "using IJulia; notebook(dir=pwd())"
+
+13. buat folder test dalam folder <nama project>
+    julia > ;
+    shell > mkdir test
+    shell > cd test
+
+    buat file dalam folder test
+    shell > touch runtests.jl
+
+14. untuk masuk ke IDE misal visual studio code maka
+
+    keluar dahulu dari julia
+
+    masuk ke folder <nama project> melalui perintah "cd <nama project>"
+
+    kemudian ketik perintah (di terminal windows atau bash)
+    $ code .
+
+
+15. kemudian tulis code pada file "test/runtests.jl"
+    
+    using Test
+    using <nama module>      #untuk command "test" pada REPL
+                             #aturannya adalah penulisan bisa seperti ini atau
+			     #menggunakan import <nama module project>, tanpa menggunaka tanda "."
+			     #di depan <nama module project>, seperti using .<nama module project>
+
+    #jika menggunakan "." maka itu adalah untuk run pada line code yang dituju
+    using .<nama module project>    atau
+    import .<nama module project>
+
+
+    @test <nama module>.<nama function> == <nilai yang diharapkan>
+
+
+16. masuk ke julia
+    $ julia
+    julia > ]
+    (@versi julia) pkg > activate .
+    
+    tambahkan package "Test"
+    (nama project) pkg > add Test
+
+    run test project
+    (nama project) pkg > test
+    .
+
+    .
+
+    Testing <nama project> tests passed
+
+17. untuk running per line text pada file.jl bisa dengan cara:
+    arahkan kursor pada line yg akan di run
+    kemudian tekan [shift + enter]
+
+
+Happy coding!
+
+Abdul Rochim
+
+
+Note:
+untuk masuk ke mode shell dari REPL maka menggunakan ";"
+julia > ;
+shell >
+
+untuk masuk ke mode pkg dari REPL maka menggunakan "]"
+julia > ]
+(@versi julia) pkg>
+
+
+

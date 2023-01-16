@@ -1,4 +1,5 @@
 module myLib
+export greet, my_function
 
 greet() = print("salam dari Abdul")
 

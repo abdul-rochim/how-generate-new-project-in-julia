@@ -117,7 +117,6 @@ cara membuat project baru di Julia:
 			     #di depan <nama module project>, seperti using .<nama module project>
 
     #jika menggunakan "." maka itu adalah untuk run pada line code yang dituju
-    using .<nama module project>    atau
     import .<nama module project>
 
 
